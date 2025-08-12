@@ -20,7 +20,7 @@ func main() {
 	cmds.Commands = append(cmds.Commands, &commands.Command{
 		Name:     "init",
 		ArgCount: 1,
-		Exec:     []string{"touch ~/.betterminal/config.yaml", "curl $1 -o ~/.betterminal/config.yaml"},
+		Exec:     []string{"touch ~/.betterminal/config.yaml", "curl $1 -o ~/.betterminal/config.yaml", "echo 'Config installed successfully'"},
 		HelpText: "please provide the url of the file you want to use as config",
 	})
 
