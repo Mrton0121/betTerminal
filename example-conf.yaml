@@ -1,0 +1,42 @@
+commands:
+  - name: cd
+    argCount: 1
+    exec:
+      - echo $(pwd) > ~/.betterminal/lastdir
+      - cd $1
+    helpText: "Arguments: \n\t1: the path of the directory you want to get to"
+  - name: dc
+    argCount: 0
+    exec:
+      - export BETTERMINAL_LASTDIR=$(pwd)
+      - cd $(cat ~/.betterminal/lastdir)
+      - echo $BETTERMINAL_LASTDIR > ~/.betterminal/lastdir
+    helpText: "Arguments: \n\tthere are no arguments"
+  - name: edit
+    argCount: 1
+    exec:
+      - touch $1
+      - nano -l $1
+    helpText: "Arguments: \n\t1: the path of the file you want to edit"
+  - name: rm
+    argCount: 1
+    exec:
+      - rm -rf $1
+    helpText: "Arguments: \n\t1: the name of the file/directory you want to delete"
+  - name: history
+    argCount: 0
+    exec:
+      - cat $BETTERMINAL_CONFIG/history
+    helpText: "Arguments: \n\tthere are no arguments. It shows the bt history"
+  - name: set
+    argCount: 2
+    exec:
+      - export $1="$2"
+  - name: get
+    argCount: 1
+    exec:
+      - echo $$1
+  - name: redo
+    argCount: 0
+    exec:
+      - bt $(tail -n 2 $BETTERMINAL_CONFIG/history | head -n 1)
