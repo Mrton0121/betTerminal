@@ -1,5 +1,7 @@
 commands:
   - name: cd
+    alias:
+      - changeDir
     argCount: 1
     exec:
       - echo $(pwd) > ~/.betterminal/lastdir
